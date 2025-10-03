@@ -33,14 +33,20 @@ else:
 db.close()
 
 # BEREKEN MAX FYSIEKE BELASTING
-leeftijd = int(personeelslid['leeftijd'])
+def bereken_max_fysieke_belasting(leeftijd, verlaagde_belasting):
+    if leeftijd <= 24:
+        max_belasting = 25
+    elif leeftijd <= 50:
+        max_belasting = 40
+    else:
+        max_belasting = 20
 
-if leeftijd <= 24:
-    max_fysieke_belasting = 25
-elif leeftijd <= 50:
-    max_fysieke_belasting = 40
-else:
-    max_fysieke_belasting = 20
+    if verlaagde_belasting:
+        max_belasting = int(verlaagde_belasting)
+
+    return max_belasting
+
+max_fysieke_belasting = bereken_max_fysieke_belasting(personeelslid['leeftijd'], personeelslid['verlaagde_fysieke_belasting'])
 
 if personeelslid['verlaagde_fysieke_belasting']:
     max_fysieke_belasting = int(personeelslid['verlaagde_fysieke_belasting'])
