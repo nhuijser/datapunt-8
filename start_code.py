@@ -1,14 +1,13 @@
 # import modulen
 from pathlib import Path
 import json
-import pprint
+# import pprint
 from database_wrapper import Database
 
 # initialisatie
 
 # parameters voor connectie met de database
 db = Database(host="localhost", gebruiker="user", wachtwoord="password", database="attractiepark")
-
 
 # main
 
@@ -24,10 +23,6 @@ if personeelslid.exists():
   personeelslid = json.loads(personeelslid.read_text(encoding="utf-8"))
 else:
     print(f"{personeelslid} bestaat niet")
-
-
-# select_query = "SELECT * FROM personeelslid WHERE id = 1"
-# personeelslid = db.execute_query(select_query)
 
 # altijd verbinding sluiten met de database als je klaar bent
 db.close()
@@ -61,8 +56,6 @@ params = (personeelslid['beroepstype'], personeelslid['bevoegdheid'], max_fysiek
 onderhoudstaken = db.execute_query(select_query, params)
 
 db.close()
-
-        
 
 totale_duur = 0
 for taak in onderhoudstaken:
